@@ -24,7 +24,7 @@ const cheeseHandler = () => {
 
       cheese = await controller.insert({ cheese: newCheese });
     } catch (e: any) {
-      res.status(500).send({
+      return res.status(500).send({
         message: e.message,
       });
     }
@@ -41,7 +41,7 @@ const cheeseHandler = () => {
       if (id) cheese = await controller.fetchById(id);
       else cheese = await controller.fetch();
     } catch (e: any) {
-      res.status(500).send({
+      return res.status(500).send({
         message: e.message,
       });
     }
@@ -57,7 +57,7 @@ const cheeseHandler = () => {
     try {
       cheese = await controller.update({ id, update: body });
     } catch (e: any) {
-      res.status(500).send({
+      return res.status(500).send({
         message: e.message,
       });
     }
@@ -75,7 +75,7 @@ const cheeseHandler = () => {
       await controller.remove(id);
       await deleteFile(`./src/codes/${id}.png`);
     } catch (e: any) {
-      res.status(500).send({
+      return res.status(500).send({
         message: e.message,
       });
     }
